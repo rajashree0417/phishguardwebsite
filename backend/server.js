@@ -86,6 +86,39 @@ app.get("/", (req, res) => {
 
 // PORT
 const PORT = process.env.PORT || 5000;
+// SAVE REPORT
+app.post("/report", async (req, res) => {
+  const { url, result } = req.body;
+
+  try {
+    await pool.query(
+      "INSERT INTO reports (url, result) VALUES ($1, $2)",
+      [url, result]
+    );
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error saving report");
+  }
+});
+
+// SAVE SCORE
+app.post("/save-score", async (req, res) => {
+  const { score, total } = req.body;
+
+  try {
+    await pool.query(
+      "INSERT INTO quiz_results (score, total) VALUES ($1, $2)",
+      [score, total]
+    );
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error saving score");
+  }
+});
 
 app.listen(PORT, () => {
   console.log("Server running on port " + PORT);
