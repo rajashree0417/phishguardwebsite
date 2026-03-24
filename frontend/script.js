@@ -3,7 +3,7 @@ async function checkURL() {
 
   const url = document.getElementById("urlInput").value;
 
-  const response = await fetch("https://phishguard.onrender.com/check", {
+  const response = await fetch("https://phishguardwebsite.onrender.com/check", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"

@@ -119,7 +119,7 @@ let timer;
 
 // LOAD QUESTIONS
 async function loadQuestions() {
-  const res = await fetch("https://phishguard-333a.onrender.com");
+  const res = await fetch("https://phishguardwebsite.onrender.com");
   let all = await res.json();
 
   let level = document.getElementById("difficulty").value;
