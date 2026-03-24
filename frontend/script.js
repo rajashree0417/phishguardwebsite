@@ -52,20 +52,20 @@ function answer(userChoice) {
   if (current < questions.length) {
     showQuestion();
   } else {
-    alert("Final Score: " + score + "/" + questions.length);
+  alert("Final Score: " + score + "/" + questions.length);
 
-    // SAVE SCORE
-    fetch("https://phishguardwebsite.onrender.com/save-score", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        score: score,
-        total: questions.length
-      })
-    });
-  }
+  // ✅ ADD THIS HERE
+  fetch("https://phishguardwebsite.onrender.com/save-score", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      score: score,
+      total: questions.length
+    })
+  });
+}
 }
 
 // INVESTIGATE BUTTON
