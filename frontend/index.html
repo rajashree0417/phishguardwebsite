@@ -204,56 +204,7 @@ function answer(user){
   } else {
     document.getElementById("result").innerText = "💀 Wrong!";
   }
-
-  document.getElementById("score").innerText = "Score: " + score;
-
-  document.getElementById("explanation").innerText =
-    "💡 " + q.explanation;
-
-  setTimeout(nextQuestion,2000);
-}
-
-// NEXT
-function nextQuestion(){
-  current++;
-
-  if(current >= questions.length){
-    showFinal();
-    return;
-  }
-
-  showQuestion();
-}
-
-// PROGRESS BAR
-function updateProgress(){
-  let percent = (current / questions.length) * 100;
-  document.getElementById("progress").style.width = percent + "%";
-}
-
-// FINAL SCREEN
-function showFinal(){
-  let msg = "";
-
-  if(score === questions.length){
-    msg = "🧠 Cyber Expert!";
-  } else if(score > questions.length/2){
-    msg = "👍 Good Awareness!";
-  } else {
-    msg = "⚠️ Needs Improvement!";
-  }
-
-  document.querySelector(".card").innerHTML =
-  `<h1>🎉 Quiz Completed</h1>
-   <h2>${msg}</h2>
-   <h3>Score: ${score}/${questions.length}</h3>
-   <button onclick="location.reload()">Restart</button>`;
-}
-
-// LOAD FIRST
-loadQuestions();
-
-</script>
+  </script>
 <script src="./script.js"></script>
 </body>
 </html>
