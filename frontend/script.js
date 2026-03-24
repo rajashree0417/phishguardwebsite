@@ -90,3 +90,21 @@ document.getElementById("difficulty").addEventListener("change", loadQuestions);
 
 // 🚀 INITIAL LOAD
 loadQuestions();
+async function reportURL() {
+  console.log("REPORT CLICKED");
+
+  const url = document.getElementById("urlInput")?.value || "unknown";
+
+  await fetch("https://phishguardwebsite.onrender.com/report", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      url: url,
+      result: "Reported by user"
+    })
+  });
+
+  alert("Reported successfully 🚨");
+}
