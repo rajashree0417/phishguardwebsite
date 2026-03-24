@@ -43,29 +43,44 @@ function showQuestion() {
 function answer(userChoice) {
   if (!questions.length) return;
 
-  if (userChoice === questions[current].isPhishing) {
+  let q = questions[current];
+
+  // Correct / Wrong display
+  if (userChoice === q.isPhishing) {
     score++;
+    document.getElementById("result").innerText = "🔥 Correct!";
+  } else {
+    document.getElementById("result").innerText = "💀 Wrong!";
   }
+
+  // Explanation
+  document.getElementById("explanation").innerText = "💡 " + q.explanation;
+
+  // Score update
+  document.getElementById("score").innerText = "Score: " + score;
 
   current++;
 
   if (current < questions.length) {
-    showQuestion();
+    setTimeout(() => {
+      document.getElementById("result").innerText = "";
+      document.getElementById("explanation").innerText = "";
+      showQuestion();
+    }, 2000);
   } else {
-  alert("Final Score: " + score + "/" + questions.length);
+    alert("Final Score: " + score + "/" + questions.length);
 
-  // ✅ ADD THIS HERE
-  fetch("https://phishguardwebsite.onrender.com/save-score", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      score: score,
-      total: questions.length
-    })
-  });
-}
+    fetch("https://phishguardwebsite.onrender.com/save-score", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        score: score,
+        total: questions.length
+      })
+    });
+  }
 }
 
 // INVESTIGATE BUTTON
